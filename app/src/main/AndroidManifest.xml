@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AvioKarte">
         <activity
+            android:name=".IspisLetovi"
+            android:exported="false" />
+        <activity
             android:name=".Flights"
             android:exported="false" />
         <activity
