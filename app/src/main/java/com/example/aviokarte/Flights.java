@@ -26,7 +26,6 @@ public class Flights extends AppCompatActivity {
     Button btnSearchFlights;
     EditText etStart, etEnd;
     TextView tvDate;
-    DatePickerDialog.OnDateSetListener setListener;
     String start, end, date;
 
     @Override
@@ -72,6 +71,7 @@ public class Flights extends AppCompatActivity {
                     intent.putExtra("istart", start);
                     intent.putExtra("iend", end);
                     intent.putExtra("idate", date);
+                    intent.putExtra("return", "");
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Unesite sve podatke", Toast.LENGTH_SHORT).show();

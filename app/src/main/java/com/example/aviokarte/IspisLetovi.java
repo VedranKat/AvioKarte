@@ -4,9 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +37,8 @@ public class IspisLetovi extends AppCompatActivity {
     SimpleDateFormat format;
     Date iDatum;
     Date vhDatum;
+    Date oldDate;
+    PrviLet prviLet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +48,29 @@ public class IspisLetovi extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("letovi");
 
         RecyclerView recyclerView = findViewById(R.id.rvIspisLetovi);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        LetoviAdapter letoviAdapter = new LetoviAdapter(this, list);
+
+        if (getIntent().getStringExtra("return").isEmpty()){
+            prviLet = new PrviLet("","","", 0);
+        }else{
+            prviLet = new PrviLet(
+                    getIntent().getStringExtra("oldStartTime"),
+                    getIntent().getStringExtra("oldEndTime"),
+                    getIntent().getStringExtra("oldDate"),
+                    getIntent().getIntExtra("oldPrice",0 )
+            );
+        }
+
+        LetoviAdapter letoviAdapter = new LetoviAdapter(this, list, getIntent().getStringExtra("return"), prviLet);
         recyclerView.setAdapter(letoviAdapter);
+
+
 
         format = new SimpleDateFormat("yyyy-MM-dd");
         String idt = getIntent().getStringExtra("idate");
@@ -58,7 +79,6 @@ public class IspisLetovi extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,7 +106,20 @@ public class IspisLetovi extends AppCompatActivity {
                     if(letovi.start.equalsIgnoreCase(getIntent().getStringExtra("istart"))
                             && letovi.end.equalsIgnoreCase(getIntent().getStringExtra("iend"))
                             && vhDatum.equals(iDatum)){
-                        list.add(letovi);
+
+                        if(getIntent().getStringExtra("return").isEmpty()){
+                            list.add(letovi);
+                        }else{
+                            try {
+                                oldDate = format.parse(getIntent().getStringExtra("oldDate"));
+                                if(oldDate.before(vhDatum)){
+                                    list.add(letovi);
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
                     }
 
                 }
@@ -98,7 +131,6 @@ public class IspisLetovi extends AppCompatActivity {
                 }
 
                 recyclerView.setAdapter(letoviAdapter);
-
 
                 Log.d(TAG, "Value is: " + list.get(0).start);
 

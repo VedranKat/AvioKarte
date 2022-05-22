@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser currentUser;
     Button btnFlights, btnKarte, btnLogout;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
