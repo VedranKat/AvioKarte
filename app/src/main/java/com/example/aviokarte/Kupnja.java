@@ -2,6 +2,7 @@ package com.example.aviokarte;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,13 @@ public class Kupnja extends AppCompatActivity {
 
         fst = getIntent().getIntExtra("1Price",0);
         snd = getIntent().getIntExtra("2Price",0);
+
+        btnBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
 
