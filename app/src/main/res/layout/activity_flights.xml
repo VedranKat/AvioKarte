@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/aircraft_background"
     tools:context=".Flights">
 
     <EditText
@@ -12,6 +13,9 @@
         android:layout_height="wrap_content"
         android:hint="Polazište"
         android:minHeight="48dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/etEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -25,6 +29,9 @@
         android:layout_height="wrap_content"
         android:hint="Dolazište"
         android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -38,6 +45,7 @@
         android:layout_height="wrap_content"
         android:text="Odaberite Datum"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnSearchFlights"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

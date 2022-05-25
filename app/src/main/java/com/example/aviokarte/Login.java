@@ -47,12 +47,10 @@ public class Login extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uEmail = username.getText().toString();
-                uPassword = password.getText().toString();
-                createAccount(uEmail, uPassword);
+                startActivity(new Intent(Login.this, Register.class));
+
             }
         });
-
 
     }
 
@@ -62,33 +60,16 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             startActivity(new Intent(Login.this,MainActivity.class));
                         } else {
-                            // If sign in fails, display a message to the user.
+
                             Toast.makeText(Login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
-    private void createAccount(String email, String password) {
-        // [START create_user_with_email]
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            startActivity(new Intent(Login.this, MainActivity.class));
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(Login.this, "Registration failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-        // [END create_user_with_email]
-    }
+
 }
