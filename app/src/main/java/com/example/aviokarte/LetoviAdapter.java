@@ -49,6 +49,7 @@ public class LetoviAdapter extends RecyclerView.Adapter<LetoviViewHolder> {
             holder.cbox.setVisibility(View.INVISIBLE);
         }
 
+
         /*holder.cbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

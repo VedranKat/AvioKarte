@@ -59,7 +59,6 @@ public class Kupnja extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         korisnik = user.getEmail();
-        mbase = FirebaseDatabase.getInstance().getReference("karte");
 
         tv1s = findViewById(R.id.tv1Start);
         tv1e = findViewById(R.id.tv1End);
@@ -82,6 +81,9 @@ public class Kupnja extends AppCompatActivity {
 
         fst = getIntent().getIntExtra("1Price",0);
         snd = getIntent().getIntExtra("2Price",0);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        mbase = database.getReference("karte");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Da li ste sigurni da želite kupiti ovu kartu?");
@@ -203,4 +205,6 @@ public class Kupnja extends AppCompatActivity {
 
 
     }
+
+    
 }
