@@ -70,8 +70,6 @@ public class IspisLetovi extends AppCompatActivity {
         LetoviAdapter letoviAdapter = new LetoviAdapter(this, list, getIntent().getStringExtra("return"), prviLet);
         recyclerView.setAdapter(letoviAdapter);
 
-
-
         format = new SimpleDateFormat("yyyy-MM-dd");
         String idt = getIntent().getStringExtra("idate");
         try {
@@ -102,25 +100,37 @@ public class IspisLetovi extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
+                    if(!idt.equals("ne") && getIntent().getStringExtra("return").isEmpty()){
+                        if(letovi.start.equalsIgnoreCase(getIntent().getStringExtra("istart"))
+                                && letovi.end.equalsIgnoreCase(getIntent().getStringExtra("iend"))
+                                && vhDatum.equals(iDatum)){
 
-                    if(letovi.start.equalsIgnoreCase(getIntent().getStringExtra("istart"))
-                            && letovi.end.equalsIgnoreCase(getIntent().getStringExtra("iend"))
-                            && vhDatum.equals(iDatum)){
-
-                        if(getIntent().getStringExtra("return").isEmpty()){
-                            list.add(letovi);
+                                list.add(letovi);
+                        }
+                    }else{
+                        if(getIntent().getStringExtra("iend").equals("")){
+                            if(letovi.start.equalsIgnoreCase(getIntent().getStringExtra("istart"))){
+                                list.add(letovi);
+                            }
                         }else{
-                            try {
-                                oldDate = format.parse(getIntent().getStringExtra("oldDate"));
-                                if(oldDate.before(vhDatum)){
+                            if(letovi.start.equalsIgnoreCase(getIntent().getStringExtra("istart"))
+                                    && letovi.end.equalsIgnoreCase(getIntent().getStringExtra("iend"))){
+                                if(getIntent().getStringExtra("return").isEmpty()){
                                     list.add(letovi);
+                                }else{
+                                    try {
+                                        oldDate = format.parse(getIntent().getStringExtra("oldDate"));
+                                        if(oldDate.before(vhDatum)){
+                                            list.add(letovi);
+                                        }
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                            } catch (ParseException e) {
-                                e.printStackTrace();
                             }
                         }
-
                     }
+
 
                 }
 

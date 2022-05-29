@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AvioKarte">
         <activity
+            android:name=".MojeKarte"
+            android:exported="false" />
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity

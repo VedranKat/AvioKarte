@@ -49,7 +49,7 @@ public class LetoviAdapter extends RecyclerView.Adapter<LetoviViewHolder> {
             holder.cbox.setVisibility(View.INVISIBLE);
         }
 
-        holder.cbox.setOnClickListener(new View.OnClickListener() {
+        /*holder.cbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(holder.cbox.isChecked() && povratak.isEmpty()){
@@ -68,7 +68,7 @@ public class LetoviAdapter extends RecyclerView.Adapter<LetoviViewHolder> {
                     datePickerDialog.show();
                 }
             }
-        });
+        });*/
 
         holder.btnSelect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +80,7 @@ public class LetoviAdapter extends RecyclerView.Adapter<LetoviViewHolder> {
                     Intent intent = new Intent(context, IspisLetovi.class);
                     intent.putExtra("istart", data.get(position).end);
                     intent.putExtra("iend", data.get(position).start);
-                    intent.putExtra("idate", returnDate);
+                    intent.putExtra("idate", "ne");
 
                     intent.putExtra("oldStartTime", data.get(position).tstart);
                     intent.putExtra("oldEndTime", data.get(position).tend);

@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         btnLogout = findViewById(R.id.btnLogout);
         btnFlights = findViewById(R.id.btnFlights);
+        btnKarte = findViewById(R.id.btnKarte);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Flights.class));
+            }
+        });
+
+        btnKarte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MojeKarte.class));
             }
         });
 

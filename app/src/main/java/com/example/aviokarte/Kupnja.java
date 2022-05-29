@@ -91,13 +91,13 @@ public class Kupnja extends AppCompatActivity {
                 executorService.execute(new Runnable() {
                     @Override
                     public void run() {
-                        Karta karta = new Karta();
-                        karta.cijena = String.valueOf(aj);
-                        karta.vlasnik = korisnik;
-                        karta.letovi = new ArrayList<Letovi>();
-                        karta.letovi.add(let1);
-                        karta.letovi.add(let2);
-                        mbase.child(String.valueOf(maxid)).setValue(karta);
+                        Karte karte = new Karte();
+                        karte.cijena = String.valueOf(aj);
+                        karte.vlasnik = korisnik;
+                        karte.letovi = new ArrayList<Letovi>();
+                        karte.letovi.add(let1);
+                        karte.letovi.add(let2);
+                        mbase.child(String.valueOf(maxid)).setValue(karte);
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
@@ -159,12 +159,12 @@ public class Kupnja extends AppCompatActivity {
             button2.setVisibility(View.INVISIBLE);
             tv2pr.setVisibility(View.INVISIBLE);
 
-            let2.start = "";
-            let2.end = "";
-            let2.tstart = "";
-            let2.tend = "";
+            let2.start = "n/a";
+            let2.end = "n/a";
+            let2.tstart = "n/a";
+            let2.tend = "n/a";
             let2.price = 0;
-            let2.date = "";;
+            let2.date = "n/a";;
 
         }else{
             let1.start = getIntent().getStringExtra("2End");
@@ -175,7 +175,7 @@ public class Kupnja extends AppCompatActivity {
             let2.tstart = getIntent().getStringExtra("2tStart");
             let2.tend = getIntent().getStringExtra("2tEnd");
             let2.price = snd;
-            let2.date = getIntent().getStringExtra("2Date");
+            let2.date = getIntent().getStringExtra("2date");
 
             tv1s.setText(getIntent().getStringExtra("2End"));
             tv1e.setText(getIntent().getStringExtra("2Start"));
@@ -184,19 +184,19 @@ public class Kupnja extends AppCompatActivity {
         let1.tstart = getIntent().getStringExtra("1tStart");
         let1.tend = getIntent().getStringExtra("1tEnd");
         let1.price = fst;
-        let1.date = getIntent().getStringExtra("1Date");
+        let1.date = getIntent().getStringExtra("1date");
 
         tv1ts.setText(getIntent().getStringExtra("1tStart"));
         tv1te.setText(getIntent().getStringExtra("1tEnd"));
         tv1pr.setText(fst+"$");
-        tv1d.setText(getIntent().getStringExtra("1Date"));
+        tv1d.setText(getIntent().getStringExtra("1date"));
 
         tv2s.setText(getIntent().getStringExtra("2Start"));
         tv2e.setText(getIntent().getStringExtra("2End"));
         tv2ts.setText(getIntent().getStringExtra("2tStart"));
         tv2te.setText(getIntent().getStringExtra("2tEnd"));
         tv2pr.setText(snd+"$");
-        tv2d.setText(getIntent().getStringExtra("2Date"));
+        tv2d.setText(getIntent().getStringExtra("2date"));
 
         aj = fst+snd;
         tvFP.setText("Ukupna Cijena: "+(aj)+"$");

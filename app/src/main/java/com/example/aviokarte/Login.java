@@ -54,6 +54,11 @@ public class Login extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed(){
+        // do nothing
+    }
+
     private void loginAccount(String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

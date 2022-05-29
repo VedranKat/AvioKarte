@@ -23,7 +23,7 @@ public class Flights extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
-    Button btnSearchFlights;
+    Button btnSearchFlights, btnA;
     EditText etStart, etEnd;
     TextView tvDate;
     String start, end, date;
@@ -34,6 +34,7 @@ public class Flights extends AppCompatActivity {
         setContentView(R.layout.activity_flights);
 
         btnSearchFlights = findViewById(R.id.btnSearchFlights);
+        btnA = findViewById(R.id.btnAllFlights);
         etStart = findViewById(R.id.etStart);
         etEnd = findViewById(R.id.etEnd);
         tvDate = findViewById(R.id.tvDate);
@@ -67,7 +68,7 @@ public class Flights extends AppCompatActivity {
                 start = etStart.getText().toString();
                 end = etEnd.getText().toString();
                 Intent intent = new Intent(Flights.this, IspisLetovi.class);
-                if (start.isEmpty() == false && end.isEmpty() == false && date.isEmpty() == false) {
+                if (!start.isEmpty() && !end.isEmpty() && date != null) {
                     intent.putExtra("istart", start);
                     intent.putExtra("iend", end);
                     intent.putExtra("idate", date);
@@ -78,5 +79,27 @@ public class Flights extends AppCompatActivity {
                 }
             }
         });
+
+        btnA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                start = etStart.getText().toString();
+                end = etEnd.getText().toString();
+                Intent intent = new Intent(Flights.this, IspisLetovi.class);
+                if(!start.isEmpty()){
+                    intent.putExtra("istart", start);
+                    intent.putExtra("iend", end);
+                    intent.putExtra("idate", "ne");
+                    intent.putExtra("return", "");
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Unesite polazište", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+
     }
 }
